@@ -1,0 +1,34 @@
+<nav class="sidebar" [class.closed]="!isOpen">
+  <div class="sidebar-header d-flex flex-column align-items-center py-3">
+    <img src="images/logo_rt.png" alt="Logo" class="mb-2" style="max-height: 50px;" />
+    <span class="h5 mb-0">Admin Panel</span>
+  </div>
+
+  <ul class="nav flex-column px-3">
+    <li class="nav-item my-1">
+      <a routerLink="/administrador" routerLinkActive="active" class="nav-link">
+        <i class="bi bi-speedometer me-2"></i> Dashboard
+      </a>
+    </li>
+    <li class="nav-item my-1">
+      <a routerLink="/administrador/funcionarios" routerLinkActive="active" class="nav-link">
+        <i class="bi bi-person-badge me-2"></i> Funcionarios
+      </a>
+    </li>
+    <li class="nav-item my-1">
+      <a routerLink="/administrador/auditores" class="nav-link">
+        <i class="bi bi-person-lines-fill me-2"></i> Auditores
+      </a>
+    </li>
+    <li class="nav-item my-1">
+      <a routerLink="/administrador/reportes" class="nav-link">
+        <i class="bi bi-bar-chart-line me-2"></i> Reportes
+      </a>
+    </li>
+    <li class="nav-item my-1">
+      <a routerLink="/administrador/denuncias" class="nav-link">
+        <i class="bi bi-flag me-2"></i> Denuncias
+      </a>
+    </li>
+  </ul>
+</nav>
