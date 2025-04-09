@@ -34,4 +34,17 @@ export class ReportsService {
     const result = await this.reportModel.findByIdAndDelete(id);
     if (!result) throw new NotFoundException('Reporte no encontrado');
   }
+
+  async findByUserId(userId: string): Promise<Report[]> {
+    const reports = await this.reportModel
+      .find({ usuario_id: userId })
+      .populate('usuario_id', 'nombre email') // opcional: para traer los datos del usuario
+      .exec();
+  
+    if (!reports || reports.length === 0) {
+      throw new NotFoundException(`No se encontraron reportes para el usuario con ID ${userId}`);
+    }
+  
+    return reports;
+  }
 }

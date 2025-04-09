@@ -15,6 +15,7 @@ import { UpdateReportDto } from './dto/update-report.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
+import { Report as ReportEntity } from './entities/report.entity'; // ✅ Renombrar para evitar conflicto
 
 @Controller('reports')
 export class ReportsController {
@@ -70,4 +71,12 @@ export class ReportsController {
   async remove(@Param('id') id: string) {
     return this.reportsService.remove(id);
   }
+
+
+  // ✅ NUEVA FUNCIÓN: Obtener reportes por ID de usuario
+  @Get('usuario/:userId')
+  async getReportsByUserId(@Param('userId') userId: string): Promise<ReportEntity[]> {
+    return this.reportsService.findByUserId(userId);
+  }
+
 }
