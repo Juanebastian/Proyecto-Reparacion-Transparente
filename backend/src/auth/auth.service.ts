@@ -9,7 +9,7 @@ export class AuthService {
   constructor(
     private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
-  ) {}
+  ) { }
 
   /**
    * 🔐 Función: login
@@ -44,11 +44,24 @@ export class AuthService {
       }
 
       // 🔐 Generar un token JWT con los datos básicos del usuario
-      const payload = { username: user.email, sub: user._id };
+      const payload = {
+        success: true,
+        message: 'Inicio de sesión exitoso',
+        statusCode: 200,
+        data: {
+          usuario: {
+            id: user._id,
+            nombreUsuario: user.nombre,
+            email: user.email,
+            rol: user.rol,
+          }
+        }
+      };
       const token = this.jwtService.sign(payload);
 
       // 📤 Retornar el token y la información básica del usuario autenticado
       return {
+
         success: true,
         message: 'Inicio de sesión exitoso',
         statusCode: 200,
@@ -61,6 +74,8 @@ export class AuthService {
             rol: user.rol,
           },
         },
+
+
       };
     } catch (error) {
       // ⚠️ Manejo de errores en caso de fallos inesperados
@@ -118,7 +133,7 @@ export class AuthService {
           nombreUsuario: newUser.nombre,
           email: newUser.email,
           rol: newUser.rol,
-          password: newUser.password, // ⚠️ No es recomendable retornar la contraseña, aunque esté encriptada.
+          //password: newUser.password, // ⚠️ No es recomendable retornar la contraseña, aunque esté encriptada.
           fechaRegistro: newUser.fecha_registro,
           estado: newUser.estado,
         },

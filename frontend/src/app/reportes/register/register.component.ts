@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ReportService } from '../../core/services/report.service';
 import { AuthService } from '../../core/services/auth.service';
 
+
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -18,6 +19,8 @@ export class RegisterComponent implements OnInit {
   successMessage: string | null = null;
   errorMessage: string | null = null;
 
+ 
+  
   private fb = inject(FormBuilder);
   private reportService = inject(ReportService);
   private authService = inject(AuthService);

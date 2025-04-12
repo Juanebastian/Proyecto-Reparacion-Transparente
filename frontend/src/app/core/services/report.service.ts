@@ -97,7 +97,7 @@ export class ReportService {
   }
 
   /**
-   * cargar reporte apartir de laid del usuario
+   * cargar reporte apartir de la ID del usuario
    */
   getReportsByUser(userId: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/usuario/${userId}`, {

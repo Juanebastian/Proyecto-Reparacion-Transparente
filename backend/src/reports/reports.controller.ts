@@ -8,6 +8,7 @@ import {
   Put,
   UploadedFile,
   UseInterceptors,
+  UseGuards,
 } from '@nestjs/common';
 import { ReportsService } from './reports.service';
 import { CreateReportDto } from './dto/create-report.dto';
@@ -16,15 +17,19 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { Report as ReportEntity } from './entities/report.entity'; // ✅ Renombrar para evitar conflicto
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('reports')
 export class ReportsController {
   constructor(private readonly reportsService: ReportsService) { }
 
+  @UseGuards(AuthGuard('jwt'))
   @Post()
   async create(@Body() createReportDto: CreateReportDto) {
     return this.reportsService.create(createReportDto);
   }
+
+  @UseGuards(AuthGuard('jwt'))
   @Post('upload')
   @UseInterceptors(
     FileInterceptor('file', {
@@ -74,6 +79,7 @@ export class ReportsController {
 
 
   // ✅ NUEVA FUNCIÓN: Obtener reportes por ID de usuario
+  @UseGuards(AuthGuard('jwt'))
   @Get('usuario/:userId')
   async getReportsByUserId(@Param('userId') userId: string): Promise<ReportEntity[]> {
     return this.reportsService.findByUserId(userId);
