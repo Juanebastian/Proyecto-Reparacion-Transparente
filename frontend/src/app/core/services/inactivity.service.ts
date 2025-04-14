@@ -7,7 +7,7 @@ import { AuthService } from './auth.service';
 })
 export class InactivityService {
   private timeoutId: any;
-  private readonly idleTime = 2 * 60 * 1000; // 2 minutos
+  private readonly idleTime = 1 * 60 * 1000; // 2 minutos
 
   private router = inject(Router);
   private authService = inject(AuthService);

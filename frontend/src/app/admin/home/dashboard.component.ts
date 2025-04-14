@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../core/services/auth.service'; // 👈 Asegúrate de que la ruta sea correcta
 
 @Component({
   selector: 'app-dashboard',
@@ -6,6 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
+
+  constructor(private authService: AuthService) {}
+
+  
+
   resumen = [
     {
       icon: 'bi-person-badge',

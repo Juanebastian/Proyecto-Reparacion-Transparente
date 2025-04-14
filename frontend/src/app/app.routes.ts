@@ -5,16 +5,20 @@ import { AuthGuard } from './auth/auth.guard';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
-    //{ path: 'funcionarios', component: FuncionariosLayoutComponent },
     {
       path: 'administrador',
       canActivate: [AuthGuard],
-      loadChildren: () => import('./admin/admin.routes') // ya no uses `.then(m => m.adminRoutes)`
+      loadChildren: () => import('./admin/admin.routes') 
     },
     {
       path: 'funcionarios',
       canActivate: [AuthGuard],
-      loadChildren: () => import('./funcionarios/funcionarios.routes') // ya no uses `.then(m => m.adminRoutes)`
+      loadChildren: () => import('./funcionarios/funcionarios.routes') 
+    },
+    {
+      path: 'auditores',
+      canActivate: [AuthGuard],
+      loadChildren: () => import('./auditores/auditores.routes') 
     }
   ];
   

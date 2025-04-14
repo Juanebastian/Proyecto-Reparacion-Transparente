@@ -9,7 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports: [CommonModule, ReactiveFormsModule] // Importa ReactiveFormsModule  aquí
+  imports: [CommonModule, ReactiveFormsModule] 
 })
 export class LoginComponent {
   loginForm: FormGroup;
@@ -34,6 +34,8 @@ export class LoginComponent {
             this.router.navigate(['/administrador']);
           } else if (user?.rol === 'funcionario') {
             this.router.navigate(['/funcionarios']);
+          }else if (user?.rol === 'auditor') {
+            this.router.navigate(['/auditores']);
           } else {
             this.errorMessage = 'Rol no autorizado.';
           }

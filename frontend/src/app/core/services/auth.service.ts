@@ -10,12 +10,6 @@ interface LoginResponse {
   statusCode: number;
   data: {
     access_token: string;
-    usuario: {
-      id: string;
-      nombreUsuario: string;
-      email: string;
-      rol: string;
-    };
   };
 }
 
@@ -37,33 +31,29 @@ export class AuthService {
   constructor() { }
 
   /**
-   * Iniciar sesión con email y contraseña
-   */
-  login(email: string, password: string): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, { email, password }).pipe(
-      tap(response => {
-        console.log('Respuesta del backend:', response); // Verificar la respuesta en consola
+ * Iniciar sesión con email y contraseña
+ */
+login(email: string, password: string): Observable<LoginResponse> {
+  return this.http.post<LoginResponse>(`${this.apiUrl}/login`, { email, password }).pipe(
+    tap(response => {
+      //console.log('Respuesta del backend:', response); // Verificar la respuesta en consola
 
-        // ✅ Si el backend indica que fue exitoso
-        if (response.success && response.data) {
-          this.saveToken(response.data.access_token); // Guardar el token en localStorage o donde decidas
-          this.saveUserInfo(response.data.usuario);   // Guardar los datos del usuario
-          this.authState.next(true); // Actualizar el estado de autenticación
-        } else {
-          // ❌ Si no es exitoso, lanzar un error para que lo maneje el suscriptor
-          throw new Error(response.message || 'Error al iniciar sesión');
-        }
-      }),
-      catchError(error => {
-        console.error('Error en login:', error);
+      if (response.success && response.data) {
+        this.saveToken(response.data.access_token);        // ✅ Guarda el token
+        this.decodeAndSaveUserFromToken();                 // ✅ Decodifica y guarda el usuario
+        this.authState.next(true);                         // ✅ Actualiza el estado de autenticación
+      } else {
+        throw new Error(response.message || 'Error al iniciar sesión');
+      }
+    }),
+    catchError(error => {
+      console.error('Error en login:', error);
+      const message = error?.error?.message || error?.message || 'Error al iniciar sesión';
+      return throwError(() => ({ message }));
+    })
+  );
+}
 
-        // 👇 Si viene un error directo del servidor, como status 500 o 401
-        const message = error?.error?.message || error?.message || 'Error al iniciar sesión';
-
-        return throwError(() => ({ message }));
-      })
-    );
-  }
 
 
 
@@ -184,4 +174,32 @@ export class AuthService {
     const user = this.getUserInfo();
     return user?.id || null;
   }
+
+
+/**
+ * Decodifica el token JWT y guarda los datos del usuario en localStorage.
+ */
+private decodeAndSaveUserFromToken(): void {
+  const token = this.getToken();
+  if (!token) return;
+
+  try {
+    const decoded = jwtDecode<any>(token);
+
+    // Aquí asumimos que el token contiene algo como: { data: { usuario: {...} } }
+    const user = decoded?.data?.usuario;
+
+    if (user) {
+      this.saveUserInfo(user);
+    } else {
+      console.warn('No se encontró información de usuario dentro del token');
+    }
+  } catch (error) {
+    console.error('Error al decodificar el token JWT:', error);
+  }
+}
+
+
+
+
 }

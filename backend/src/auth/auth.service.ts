@@ -67,12 +67,7 @@ export class AuthService {
         statusCode: 200,
         data: {
           access_token: token,
-          usuario: {
-            id: user._id,
-            nombreUsuario: user.nombre,
-            email: user.email,
-            rol: user.rol,
-          },
+          
         },
 
 
