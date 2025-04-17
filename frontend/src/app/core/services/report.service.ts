@@ -76,7 +76,7 @@ export class ReportService {
    * Actualizar un reporte
    */
   updateReport(id: string, data: any): Observable<any> {
-    return this.http.patch(`${this.apiUrl}/${id}`, data, { headers: this.getHeaders() }).pipe(
+    return this.http.put(`${this.apiUrl}/${id}`, data, { headers: this.getHeaders() }).pipe(
       catchError((err) => {
         console.error('❌ Error al actualizar reporte:', err);
         return throwError(() => err);

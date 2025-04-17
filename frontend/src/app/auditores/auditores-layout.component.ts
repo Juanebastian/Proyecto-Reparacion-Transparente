@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FooterComponent } from "../core/components/footer/footer.component";
 import { HeaderComponent } from "../core/components/header/header.component";
-import { AuditoresSidebarComponent } from "./sidebar/auditores-sidebar/auditores-sidebar.component";
+import { AuditoresSidebarComponent } from "./sidebar/auditores-sidebar.component";
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 

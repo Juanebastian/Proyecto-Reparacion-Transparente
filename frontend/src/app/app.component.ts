@@ -10,6 +10,6 @@ import { InactivityService } from './core/services/inactivity.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'proyecto_0.2';
+  title = 'reparacion-transparente';
   constructor(private inactivityService: InactivityService) {}
 }

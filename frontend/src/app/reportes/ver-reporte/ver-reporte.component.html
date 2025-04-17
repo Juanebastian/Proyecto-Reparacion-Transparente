@@ -1,0 +1,36 @@
+<dl class="row" *ngIf="reporte">
+    <dt class="col-sm-4">Descripción:</dt>
+    <dd class="col-sm-8">{{ reporte.descripcion }}</dd>
+  
+    <dt class="col-sm-4">Zona:</dt>
+    <dd class="col-sm-8">{{ reporte.zona }}</dd>
+  
+    <dt class="col-sm-4">Fecha de Publicación:</dt>
+    <dd class="col-sm-8">{{ reporte.fecha_publicacion | date:'medium' }}</dd>
+  
+    <dt class="col-sm-4">Estado:</dt>
+    <dd class="col-sm-8">
+      <span class="badge" [ngClass]="{
+        'bg-secondary': reporte.estado === 'pendiente',
+        'bg-success': reporte.estado === 'aprobado',
+        'bg-danger': reporte.estado === 'rechazado'
+      }">
+        {{ reporte.estado | titlecase }}
+      </span>
+    </dd>
+  
+    <dt class="col-sm-4">Documento:</dt>
+    <dd class="col-sm-8">
+      <a [href]="reporte.documentacion" target="_blank" class="btn btn-sm btn-outline-info">
+        Ver PDF
+      </a>
+    </dd>
+  </dl>
+  <div class="d-flex justify-content-end mt-4" *ngIf="reporte?.estado === 'pendiente'">
+    <button class="btn btn-success me-2" (click)="cambiarEstado('aprobado')">
+      <i class="bi bi-check-circle"></i> Aprobar
+    </button>
+    <button class="btn btn-danger" (click)="cambiarEstado('rechazado')">
+      <i class="bi bi-x-circle"></i> Rechazar
+    </button>
+  </div>
