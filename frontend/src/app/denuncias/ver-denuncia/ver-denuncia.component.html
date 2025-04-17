@@ -1,0 +1,59 @@
+<div *ngIf="denuncia; else sinDatos" class="container-fluid">
+    <div class="row mb-3">
+      <div class="col">
+        <h5 class="fw-bold">📄 Detalles de la Denuncia</h5>
+        <hr>
+      </div>
+    </div>
+  
+    <div class="row mb-2">
+      <div class="col-md-6">
+        <p><strong>Descripción:</strong></p>
+        <p class="text-muted">{{ denuncia.descripcion }}</p>
+      </div>
+  
+      <div class="col-md-6">
+        <p><strong>Fecha de envío:</strong></p>
+        <p class="text-muted">{{ denuncia.fecha_envio | date: 'fullDate' }}</p>
+      </div>
+    </div>
+  
+    <div class="row mb-2">
+      <div class="col-md-6">
+        <p><strong>Estado:</strong></p>
+        <span class="badge" [ngClass]="{
+          'bg-secondary': denuncia.estado === 'pendiente',
+          'bg-warning': denuncia.estado === 'en revisión',
+          'bg-success': denuncia.estado === 'resuelta'
+        }">
+          {{ denuncia.estado | titlecase }}
+        </span>
+      </div>
+  
+      <div class="col-md-6">
+        <p><strong>Reportante:</strong></p>
+        <p class="text-muted">
+          {{ denuncia.anonimo ? 'Anónimo' : (denuncia.usuario_id?.nombre || 'Desconocido') }}
+        </p>
+      </div>
+    </div>
+  
+    <div *ngIf="denuncia.adjuntos && denuncia.adjuntos.length > 0" class="row mt-3">
+      <div class="col">
+        <p><strong>Adjuntos:</strong></p>
+        <ul class="list-group">
+          <li *ngFor="let file of denuncia.adjuntos" class="list-group-item d-flex justify-content-between align-items-center">
+            {{ file.nombre }}
+            <a class="btn btn-sm btn-outline-primary" [href]="file.url" target="_blank">
+              Ver archivo
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #sinDatos>
+    <p class="text-muted">No hay información disponible para esta denuncia.</p>
+  </ng-template>
+  

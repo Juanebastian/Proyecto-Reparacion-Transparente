@@ -56,7 +56,7 @@ export class ReportsController {
   }
   
 
-
+  @UseGuards(AuthGuard('jwt'))
   @Get()
   async findAll() {
     return this.reportsService.findAll();
