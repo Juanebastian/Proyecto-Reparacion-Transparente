@@ -1,7 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ReportService } from '../../core/services/report.service';
 import { CommonModule } from '@angular/common';
-import { RegisterComponent } from "../../reportes/register/register.component";
 import { VerReporteComponent } from "../../reportes/ver-reporte/ver-reporte.component";
 
 // Permite usar objetos y eventos de Bootstrap JS
@@ -10,7 +9,7 @@ declare var bootstrap: any;
 @Component({
   selector: 'app-reportes',
   standalone: true,
-  imports: [CommonModule, RegisterComponent, VerReporteComponent],
+  imports: [CommonModule , VerReporteComponent],
   templateUrl: './reportes.component.html',
   styleUrls: ['./reportes.component.scss']
 })

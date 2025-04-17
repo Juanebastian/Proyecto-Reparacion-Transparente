@@ -1,18 +1,22 @@
-<nav class=" navbar-expand-lg custom-navbar px-3">
-    <button class="btn toggle-btn me-3" (click)="toggleSidebar.emit()">
+<nav class="custom-navbar px-3">
+  <div class="d-flex align-items-center w-100">
+    <!-- Botón para alternar sidebar -->
+    <button class="btn toggle-btn me-3" (click)="toggleSidebar.emit()" aria-label="Abrir menú lateral">
       <i class="bi bi-list fs-3"></i>
     </button>
-  
-    <a class="navbar-brand text-white fw-bold" >REPARACION TRANPARENTE Bogota Colombia 2025/4/6</a>
-  
-    <div class="ms-auto d-flex align-items-center gap-3">
-      <span class="text-white">Hola, {{ nombreUsuario }}</span>
+
+    <!-- Título -->
+    <a class="navbar-brand text-white fw-bold flex-grow-1">
+      Reparación Transparente • Bogotá D.C. 2025
+    </a>
+
+    <!-- Usuario y cerrar sesión -->
+    <div class="d-flex align-items-center gap-3">
+      <span class="text-white d-none d-md-inline">Hola, {{ nombreUsuario }}</span>
       <i class="bi bi-person-circle fs-4 text-white"></i>
-  
-      <!-- Botón de cerrar sesión -->
-      <button class="btn btn-outline-light btn-sm" (click)="cerrarSesion()">
+      <button class="btn btn-sm btn-outline-light" (click)="cerrarSesion()">
         Cerrar sesión
       </button>
     </div>
-  </nav>
-  
+  </div>
+</nav>

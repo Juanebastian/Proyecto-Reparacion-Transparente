@@ -1,24 +1,46 @@
 .custom-navbar {
-    background-color: #158aa2; // verde azulado
-    height: 60px;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  
-    .toggle-btn {
-      background: transparent;
-      border: none;
-      color: #ffffff;
-      transition: transform 0.2s ease;
-  
-      &:hover {
-        transform: scale(1.1);
-      }
-    }
-  
-    .navbar-brand {
-      font-size: 1.25rem;
-      text-transform: uppercase;
+  background-color: #158aa2;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  animation: slideDown 0.3s ease-in-out;
+
+  .toggle-btn {
+    background: transparent;
+    border: none;
+    color: #fff;
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: scale(1.1);
     }
   }
-  
+
+  .navbar-brand {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  button.btn-outline-light {
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+  }
+}
+
+// Animación de entrada
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
