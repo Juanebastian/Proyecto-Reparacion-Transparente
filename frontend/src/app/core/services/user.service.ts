@@ -42,4 +42,34 @@ export class UserService {
       })
     );
   }
+
+  getFuncionarios(): Observable<any> {
+    const token = this.authService.getToken();
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.http.get('http://localhost:3000/users/funcionarios', { headers }).pipe(
+      catchError((err) => {
+        console.error('❌ Error al obtener funcionarios:', err);
+        return throwError(() => err);
+      })
+    );
+  }
+
+  getAuditores(): Observable<any> {
+    const token = this.authService.getToken();
+  
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+  
+    return this.http.get('http://localhost:3000/users/auditores', { headers }).pipe(
+      catchError((err) => {
+        console.error('❌ Error al obtener auditores:', err);
+        return throwError(() => err);
+      })
+    );
+  }
 }

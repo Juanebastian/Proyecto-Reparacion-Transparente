@@ -51,4 +51,24 @@ export class UsersService {
     }
     return { message: 'Usuario eliminado correctamente' };
   }
+
+  async findFuncionarios() {
+    const funcionarios = await this.userModel.find({ rol: 'funcionario' }).exec();
+    return {
+      success: true,
+      message: 'Funcionarios obtenidos correctamente',
+      statusCode: 200,
+      data: funcionarios,
+    };
+  }
+
+  async findAuditores() {
+    const auditores = await this.userModel.find({ rol: 'auditor' }).exec();
+    return {
+      success: true,
+      message: 'Auditores obtenidos correctamente',
+      statusCode: 200,
+      data: auditores,
+    };
+  }
 }

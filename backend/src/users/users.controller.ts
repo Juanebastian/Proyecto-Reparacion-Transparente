@@ -6,13 +6,25 @@ import { AuthGuard } from '@nestjs/passport';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly usersService: UsersService) { }
 
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
 
+  @Get('funcionarios')
+  @UseGuards(AuthGuard('jwt'))
+  findFuncionarios() {
+    return this.usersService.findFuncionarios();
+  }
+  
+  @Get('auditores') // Ruta para obtener auditores
+  @UseGuards(AuthGuard('jwt'))
+  findAuditores() {
+    return this.usersService.findAuditores();
+  }
+  
   @Get()
   @UseGuards(AuthGuard('jwt'))
   findAll() {
@@ -34,5 +46,6 @@ export class UsersController {
     return this.usersService.remove(id);
   }
 
-  
+ 
+
 }

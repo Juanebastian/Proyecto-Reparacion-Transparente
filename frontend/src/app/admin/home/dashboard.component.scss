@@ -1,13 +1,24 @@
-.card {
-    border-radius: 0.75rem;
+.dashboard-card {
+  border-radius: 1rem;
+  transition: all 0.2s ease-in-out;
+  background-color: #fff;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.05);
   }
-  
-  .table th,
-  .table td {
-    vertical-align: middle;
+
+  h2 {
+    font-size: 2rem;
+    color: #333;
   }
-  
-  .badge {
-    font-size: 0.75rem;
-  }
-  
+}
+
+.icon-circle {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}

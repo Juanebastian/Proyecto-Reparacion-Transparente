@@ -1,1 +1,69 @@
-<p>auditores works!</p>
+<section class="container-fluid mt-4">
+  <div class="row mb-3">
+    <div class="col">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-light p-2 rounded">
+          <li class="breadcrumb-item"><a routerLink="/">Administrador</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Auditores</li>
+        </ol>
+      </nav>
+      <h2 class="fw-bold text-dark">Lista de Auditores</h2>
+      <p class="text-muted">Gestión de auditores del sistema.</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-teal text-white d-flex justify-content-between align-items-center">
+          <h5 class="mb-0">Auditores Registrados</h5>
+          <button class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#registerModal">
+            <i class="bi bi-plus-circle me-1"></i> Nuevo Auditor
+          </button>
+        </div>
+        <div class="card-body table-responsive">
+          <table class="table table-striped table-hover align-middle">
+            <thead class="table-light">
+              <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Rol</th>
+                <th>Estado</th>
+                <th>Registro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let auditor of auditores">
+                <td>{{ auditor.nombre }}</td>
+                <td>{{ auditor.email }}</td>
+                <td>{{ auditor.rol }}</td>
+                <td>
+                  <span class="badge" [ngClass]="{
+                    'bg-success': auditor.estado === 'activo',
+                    'bg-danger': auditor.estado !== 'activo'
+                  }">{{ auditor.estado }}</span>
+                </td>
+                <td>{{ auditor.fecha_registro | date:'short' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-teal text-white">
+        <h5 class="modal-title" id="registerModalLabel">Registrar Nuevo Auditor</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <app-register></app-register> <!-- Reutilizamos el mismo formulario -->
+      </div>
+    </div>
+  </div>
+</div>

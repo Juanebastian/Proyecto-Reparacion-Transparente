@@ -35,6 +35,8 @@ export class DenunciasComponent implements OnInit/*, AfterViewInit*/ {
     }
   }
  */
+
+  
   cargarDenuncias() {
     this.loading = true;
     this.error = null;
