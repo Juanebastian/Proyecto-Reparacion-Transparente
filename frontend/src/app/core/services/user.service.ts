@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
+import { environment } from '../../../environments/environment.component';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,9 @@ import { AuthService } from './auth.service';
 export class UserService {
   private http = inject(HttpClient);
   private authService = inject(AuthService);
-  private apiUrl = 'http://localhost:3000/auth/register';
+    private apiUrl = `${environment.apiUrl}/users`;
+  
+ 
 
   registerUser(data: any): Observable<any> {
     const token = this.authService.getToken();
@@ -18,7 +21,7 @@ export class UserService {
       Authorization: `Bearer ${token}`,
     });
 
-    return this.http.post(this.apiUrl, data, { headers }).pipe(
+    return this.http.post(`${environment.apiUrl}/auth/register`, data, { headers }).pipe(
       catchError((err) => {
         console.error('❌ Error en UserService:', err);
         return throwError(() => err);
@@ -27,7 +30,7 @@ export class UserService {
   }
 
 
-
+/*
   getAllUsers(): Observable<any> {
     const token = this.authService.getToken();
   
@@ -43,6 +46,7 @@ export class UserService {
     );
   }
 
+  */
   getFuncionarios(): Observable<any> {
     const token = this.authService.getToken();
 
@@ -50,7 +54,7 @@ export class UserService {
       Authorization: `Bearer ${token}`,
     });
 
-    return this.http.get('http://localhost:3000/users/funcionarios', { headers }).pipe(
+    return this.http.get(`${this.apiUrl}/funcionarios`, { headers }).pipe(
       catchError((err) => {
         console.error('❌ Error al obtener funcionarios:', err);
         return throwError(() => err);
@@ -65,7 +69,7 @@ export class UserService {
       Authorization: `Bearer ${token}`,
     });
   
-    return this.http.get('http://localhost:3000/users/auditores', { headers }).pipe(
+    return this.http.get(`${this.apiUrl}/auditores`, { headers }).pipe(
       catchError((err) => {
         console.error('❌ Error al obtener auditores:', err);
         return throwError(() => err);

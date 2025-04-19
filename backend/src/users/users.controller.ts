@@ -9,9 +9,12 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
   @Post()
+  @UseGuards(AuthGuard('jwt'))
   async create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
+
+
 
   @Get('funcionarios')
   @UseGuards(AuthGuard('jwt'))

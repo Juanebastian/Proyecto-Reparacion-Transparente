@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { Observable, catchError, throwError } from 'rxjs';
+import { environment } from '../../../environments/environment.component';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,8 @@ import { Observable, catchError, throwError } from 'rxjs';
 export class ComplaintService {
   private http = inject(HttpClient);
   private authService = inject(AuthService);
-  private apiUrl = 'http://localhost:3000/complaints';
+  private apiUrl = `${environment.apiUrl}/complaints`;
+  //private apiUrl = 'http://localhost:3000/complaints';
 
   private getHeaders(): HttpHeaders {
     const token = this.authService.getToken();

@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap, catchError, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
+import { environment } from '../../../environments/environment.component';
+
+
 
 interface LoginResponse {
   success: boolean;
@@ -22,7 +25,8 @@ interface JwtPayload {
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/auth'; // 🛠️ Reemplázalo con la URL real de tu backend
+  private apiUrl = `${environment.apiUrl}/auth`; // ✅ Usar variable global
+  //private apiUrl = 'http://localhost:3000/auth'; // 🛠️ Reemplázalo con la URL real de tu backend
   private authState = new BehaviorSubject<boolean>(this.hasToken());
 
   private http = inject(HttpClient);
