@@ -3,7 +3,7 @@ import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/registro';
 import { AuthGuard } from '@nestjs/passport';
-import { AdminGuard } from './admin.guard ';
+import { AdminGuard } from './admin.guard';
 
 @Controller('auth')
 export class AuthController {

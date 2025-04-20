@@ -1,4 +1,5 @@
 <section class="container-fluid mt-4">
+  <!-- Breadcrumb -->
   <div class="row mb-3">
     <div class="col">
       <nav aria-label="breadcrumb">
@@ -12,6 +13,7 @@
     </div>
   </div>
 
+  <!-- Tarjetas resumen -->
   <div class="row g-4">
     <div class="col-12 col-sm-6 col-xl-3" *ngFor="let card of dashboardCards">
       <div class="card dashboard-card shadow-sm border-0 h-100">
@@ -33,4 +35,33 @@
       </div>
     </div>
   </div>
+
+  <!-- Gráficos -->
+  <div class="row mt-5 g-4">
+    <!-- Gráfico de barras -->
+    <div class="col-12 col-lg-6">
+      <div class="card shadow-sm p-3 h-100">
+        <h5 class="mb-3 fw-semibold text-center">Estadísticas por Categoría</h5>
+        <canvas baseChart
+                [data]="{ labels: barChartLabels, datasets: barChartData }"
+                [options]="barChartOptions"
+                [type]="'bar'">
+        </canvas>
+      </div>
+    </div>
+
+    <!-- Gráfico de dona -->
+    <div class="col-12 col-lg-6">
+      <div class="card shadow-sm p-3 h-100">
+        <h5 class="mb-3 fw-semibold text-center">Distribución General</h5>
+        <canvas baseChart
+                [data]="donutChartData"
+                [options]="donutChartOptions"
+                [type]="'doughnut'">
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+
 </section>

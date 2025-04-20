@@ -1,24 +1,29 @@
 .dashboard-card {
   border-radius: 1rem;
-  transition: all 0.2s ease-in-out;
   background-color: #fff;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.1);
   }
 
   h2 {
     font-size: 2rem;
-    color: #333;
+    color: #2c3e50;
   }
 }
 
 .icon-circle {
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  background-color: #e9ecef; // gris claro por defecto
+  color: #fff;
+  font-size: 1.25rem;
+  flex-shrink: 0;
 }

@@ -30,7 +30,7 @@ export class LoginComponent {
         next: () => {
           const user = this.authService.getUserInfo(); // obtenemos el usuario almacenado
   
-          if (user?.rol === 'admin') {
+          if (user?.rol === 'administrador') {
             this.router.navigate(['/administrador']);
           } else if (user?.rol === 'funcionario') {
             this.router.navigate(['/funcionarios']);

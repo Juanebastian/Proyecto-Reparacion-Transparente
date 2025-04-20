@@ -18,18 +18,22 @@ import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { Report as ReportEntity } from './entities/report.entity'; // ✅ Renombrar para evitar conflicto
 import { AuthGuard } from '@nestjs/passport';
+import { FuncionarioGuard } from 'src/auth/funcionario.guard';
 
 @Controller('reports')
 export class ReportsController {
   constructor(private readonly reportsService: ReportsService) { }
 
-  @UseGuards(AuthGuard('jwt'))
+
+  @UseGuards(AuthGuard('jwt'), FuncionarioGuard)
   @Post()
   async create(@Body() createReportDto: CreateReportDto) {
     return this.reportsService.create(createReportDto);
   }
 
-  @UseGuards(AuthGuard('jwt'))
+
+
+  @UseGuards(AuthGuard('jwt'), FuncionarioGuard)
   @Post('upload')
   @UseInterceptors(
     FileInterceptor('file', {

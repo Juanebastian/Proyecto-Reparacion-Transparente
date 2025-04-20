@@ -29,7 +29,7 @@ export class AdminLayoutComponent {
   ngOnInit(): void {
     const user = this.authService.getUserInfo();
 
-    if (!user || user.rol !== 'admin') {
+    if (!user || user.rol !== 'administrador') {
       console.warn('Acceso denegado: usuario no es administrador');
       this.authService.logout(); // 🔐 Cierra la sesión automáticamente
     }
