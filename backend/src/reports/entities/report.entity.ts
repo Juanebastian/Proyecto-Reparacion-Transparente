@@ -22,6 +22,10 @@ export class Report extends Document {
   @Prop({ required: true })
   zona: string;
 
+  // monto valor con el que se ejecutó la acción de restitución
+  @Prop({ required: true })
+  valor: string;
+
   // Estado del reporte (para flujo de aprobación)
   @Prop({ required: true, enum: ['pendiente', 'aprobado', 'rechazado'], default: 'pendiente' })
   estado: string;

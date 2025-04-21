@@ -21,6 +21,10 @@ export class CreateReportDto {
   @IsNotEmpty()
   zona: string;
 
+  @IsString()
+  @IsNotEmpty()
+  valor: string;
+
   @IsEnum(['pendiente', 'aprobado', 'rechazado'])
   @IsOptional()
   estado?: 'pendiente' | 'aprobado' | 'rechazado';

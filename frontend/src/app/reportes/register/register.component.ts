@@ -30,6 +30,7 @@ export class RegisterComponent implements OnInit {
       descripcion: ['', Validators.required],
       zona: ['', Validators.required],
       estado: ['pendiente', Validators.required],
+      valor: ['', Validators.required], // ✅ Agregado aquí
     });
   }
 
@@ -57,6 +58,7 @@ export class RegisterComponent implements OnInit {
     formData.append('descripcion', this.form.value.descripcion);
     formData.append('zona', this.form.value.zona);
     formData.append('estado', this.form.value.estado);
+    formData.append('valor', this.form.value.valor);
     formData.append('usuario_id', usuario_id);
 
     this.loading = true;
@@ -76,4 +78,40 @@ export class RegisterComponent implements OnInit {
       },
     });
   }
+
+  zonasColombia: string[] = [
+    'Amazonas - Leticia',
+    'Antioquia - Medellín',
+    'Arauca - Arauca',
+    'Atlántico - Barranquilla',
+    'Bolívar - Cartagena',
+    'Boyacá - Tunja',
+    'Caldas - Manizales',
+    'Caquetá - Florencia',
+    'Casanare - Yopal',
+    'Cauca - Popayán',
+    'Cesar - Valledupar',
+    'Chocó - Quibdó',
+    'Córdoba - Montería',
+    'Cundinamarca - Bogotá',
+    'Guainía - Inírida',
+    'Guaviare - San José del Guaviare',
+    'Huila - Neiva',
+    'La Guajira - Riohacha',
+    'Magdalena - Santa Marta',
+    'Meta - Villavicencio',
+    'Nariño - Pasto',
+    'Norte de Santander - Cúcuta',
+    'Putumayo - Mocoa',
+    'Quindío - Armenia',
+    'Risaralda - Pereira',
+    'San Andrés y Providencia - San Andrés',
+    'Santander - Bucaramanga',
+    'Sucre - Sincelejo',
+    'Tolima - Ibagué',
+    'Valle del Cauca - Cali',
+    'Vaupés - Mitú',
+    'Vichada - Puerto Carreño',
+  ];
+  
 }

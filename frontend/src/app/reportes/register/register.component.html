@@ -11,25 +11,19 @@
         <!-- Descripción -->
         <div class="mb-3">
           <label for="descripcion" class="form-label">Descripción</label>
-          <textarea
-            id="descripcion"
-            formControlName="descripcion"
-            class="form-control"
-            rows="3"
-            placeholder="Describe el reporte"
-          ></textarea>
+          <textarea id="descripcion" formControlName="descripcion" class="form-control" rows="3"
+            placeholder="Describe el reporte"></textarea>
         </div>
 
         <!-- Zona -->
         <div class="mb-3">
           <label for="zona" class="form-label">Zona</label>
-          <input
-            type="text"
-            id="zona"
-            formControlName="zona"
-            class="form-control"
-            placeholder="Ej. Tierralta, Córdoba"
-          />
+          <select id="zona" formControlName="zona" class="form-select">
+            <option value="">Seleccione una zona</option>
+            <option *ngFor="let zona of zonasColombia" [value]="zona">
+              {{ zona }}
+            </option>
+          </select>
         </div>
 
         <!-- Estado -->
@@ -42,21 +36,22 @@
           </select>
         </div>
 
+        <!-- Valor -->
+        <div class="mb-3">
+          <label for="valor" class="form-label">Valor</label>
+          <input type="text" id="valor" formControlName="valor" class="form-control" placeholder="20.000.000" />
+        </div>
+
         <!-- Documentación (Archivo) -->
-<div class="mb-3">
-  <label for="file" class="form-label">Documento (PDF)</label>
-  <input
-    type="file"
-    id="file"
-    (change)="onFileSelected($event)"
-    accept="application/pdf"
-    class="form-control"
-  />
-</div>
+        <div class="mb-3">
+          <label for="file" class="form-label">Documento (PDF)</label>
+          <input type="file" id="file" (change)="onFileSelected($event)" accept="application/pdf"
+            class="form-control" />
+        </div>
 
 
         <!-- Botón -->
-        <button class="btn btn-primary" type="submit" [disabled]="loading">
+        <button class="btn btn-info text-white" type="submit" [disabled]="loading">
           {{ loading ? 'Enviando...' : 'Registrar reporte' }}
         </button>
       </form>

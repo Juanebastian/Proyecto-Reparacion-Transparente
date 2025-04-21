@@ -33,6 +33,7 @@
                   <th>Zona</th>
                   <th>Fecha</th>
                   <th>Estado</th>
+                  <th>Valor</th>
                   <th>Documento</th>
                 </tr>
               </thead>
@@ -50,6 +51,7 @@
                       {{ reporte.estado | titlecase }}
                     </span>
                   </td>
+                  <td>{{ reporte.valor }}</td>
                   <td>
                     <a [href]="reporte.documentacion" target="_blank" class="btn btn-sm btn-outline-primary">
                       Ver PDF
