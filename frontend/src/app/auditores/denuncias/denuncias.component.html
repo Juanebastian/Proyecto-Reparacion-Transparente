@@ -1,84 +1,103 @@
 <section class="container-fluid mt-4">
-    <div class="row mb-3">
-      <div class="col">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb bg-light p-2 rounded">
-            <li class="breadcrumb-item"><a routerLink="/">Auditor</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Denuncias</li>
-          </ol>
-        </nav>
-        <h2 class="fw-bold text-dark">📢 Denuncias Recibidas</h2>
-        <p class="text-muted">Listado de todas las denuncias registradas en el sistema.</p>
-      </div>
+  <div class="row mb-3">
+    <div class="col">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-light p-2 rounded">
+          <li class="breadcrumb-item"><a routerLink="/">Auditor</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Denuncias</li>
+        </ol>
+      </nav>
+      <h2 class="fw-bold text-dark">📢 Denuncias Recibidas</h2>
+      <p class="text-muted">Listado de todas las denuncias registradas en el sistema.</p>
     </div>
-  
-    <div class="row">
-      <div class="col-12">
-        <div class="card shadow-sm border-0">
-          <div class="card-header bg-teal text-white d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">Denuncias Registradas</h5>
-          </div>
-  
-          <div class="card-body table-responsive">
-            <div *ngIf="loading" class="alert alert-info">Cargando denuncias...</div>
-            <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
-  
-            <table *ngIf="denuncias.length > 0" class="table table-striped table-hover align-middle">
-              <thead class="table-light">
-                <tr>
-                  <th>Descripción</th>
-                  <th>Usuario</th>
-                  <th>Fecha</th>
-                  <th>Estado</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let denuncia of denuncias">
-                  <td>{{ denuncia.descripcion }}</td>
-                  <td>{{ denuncia.anonimo ? 'Anónimo' : (denuncia.usuario_id?.nombre || 'Desconocido') }}</td>
-                  <td>{{ denuncia.fecha_envio | date: 'mediumDate' }}</td>
-                  <td>
-                    <span class="badge" [ngClass]="{
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-teal text-white d-flex justify-content-between align-items-center">
+          <h5 class="mb-0">Denuncias Registradas</h5>
+          <button class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#crearDenunciaModal">
+            <i class="bi bi-plus-circle me-1"></i> Nueva Denuncia
+          </button>
+        </div>
+
+        <div class="card-body table-responsive">
+          <div *ngIf="loading" class="alert alert-info">Cargando denuncias...</div>
+          <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+          <table *ngIf="denuncias.length > 0" class="table table-striped table-hover align-middle">
+            <thead class="table-light">
+              <tr>
+                <th>Descripción</th>
+                <th>Usuario</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let denuncia of denuncias">
+                <td>{{ denuncia.descripcion }}</td>
+                <td>{{ denuncia.anonimo ? 'Anónimo' : (denuncia.usuario_id?.nombre || 'Desconocido') }}</td>
+                <td>{{ denuncia.fecha_envio | date: 'mediumDate' }}</td>
+                <td>
+                  <span class="badge" [ngClass]="{
                       'bg-secondary': denuncia.estado === 'pendiente',
                       'bg-warning': denuncia.estado === 'en revisión',
                       'bg-success': denuncia.estado === 'resuelta'
                     }">
-                      {{ denuncia.estado | titlecase }}
-                    </span>
-                  </td>
-                  <td>
-                    <button class="btn btn-sm btn-outline-info" (click)="abrirModalDetalles(denuncia)">
-                      <i class="bi bi-eye"></i> Ver Detalles
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-  
-            <div *ngIf="!loading && denuncias.length === 0" class="alert alert-warning">
-              No hay denuncias registradas.
-            </div>
+                    {{ denuncia.estado | titlecase }}
+                  </span>
+                </td>
+                <td>
+                  <button class="btn btn-sm btn-outline-info" (click)="abrirModalDetalles(denuncia)">
+                    <i class="bi bi-eye"></i> Ver Detalles
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div *ngIf="!loading && denuncias.length === 0" class="alert alert-warning">
+            No hay denuncias registradas.
           </div>
         </div>
       </div>
     </div>
-  </section>
-  
-  <!-- Modal Detalles de la Denuncia -->
-  <div class="modal fade" id="detalleDenunciaModal" tabindex="-1" aria-labelledby="detalleDenunciaModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header bg-teal text-white">
-          <h5 class="modal-title" id="detalleDenunciaModalLabel">Detalles de la Denuncia</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-        </div>
-        <div class="modal-body">
-            <app-ver-denuncia [denuncia]="selectedDenuncia"></app-ver-denuncia>
+  </div>
+</section>
 
-          <!-- Aquí puedes reemplazar con un componente tipo <app-ver-denuncia [denuncia]="selectedDenuncia"> si quieres -->
-        </div>
+<!-- Modal Detalles de la Denuncia -->
+<div class="modal fade" id="detalleDenunciaModal" tabindex="-1" aria-labelledby="detalleDenunciaModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-teal text-white">
+        <h5 class="modal-title" id="detalleDenunciaModalLabel">Detalles de la Denuncia</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <app-ver-denuncia [denuncia]="selectedDenuncia"></app-ver-denuncia>
+
+        <!-- Aquí puedes reemplazar con un componente tipo <app-ver-denuncia [denuncia]="selectedDenuncia"> si quieres -->
       </div>
     </div>
   </div>
-  
+</div>
+<!-- Modal para crear nueva denuncia -->
+<div class="modal fade" id="crearDenunciaModal" tabindex="-1" role="dialog" aria-labelledby="crearDenunciaModal">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-teal text-white">
+        <h5 class="modal-title" id="crearReporteModalLabel">
+          Nueva Denuncia
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <app-register></app-register>
+      </div>
+    </div>
+  </div>
+</div>

@@ -26,4 +26,13 @@ export class ComplaintService {
       })
     );
   }
+
+  createComplaint(data: any): Observable<any> {
+    return this.http.post(this.apiUrl, data, { headers: this.getHeaders() }).pipe(
+      catchError((err) => {
+        console.error('❌ Error al crear denuncia:', err);
+        return throwError(() => err);
+      })
+    );
+  }
 }

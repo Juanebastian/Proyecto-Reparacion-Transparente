@@ -30,22 +30,9 @@ export class DashboardComponent implements OnInit {
   }
 
   cargarDatos() {
-    this.userService.getFuncionarios().subscribe({
-      next: (res) => {
-        this.totalFuncionarios = res.data.length;
-        this.actualizarDashboard();
-      },
-      error: (err) => console.error('Error cargando funcionarios', err)
-    });
+    
 
-    this.userService.getAuditores().subscribe({
-      next: (res) => {
-        this.totalAuditores = res.data.length;
-        this.actualizarDashboard();
-      },
-      error: (err) => console.error('Error cargando auditores', err)
-    });
-
+  
     this.reportService.getAllReports().subscribe({
       next: (res) => {
         this.totalReportes = Array.isArray(res.data) ? res.data.length : res.length;
@@ -66,15 +53,7 @@ export class DashboardComponent implements OnInit {
   actualizarDashboard() {
     this.dashboardCards = [
       
-      {
-        title: 'Total Auditores',
-        total: this.totalAuditores,
-        description: 'Auditores activos',
-        icon: 'ti ti-shield-check',
-        iconBg: 'bg-success',
-        trend: '+5% este mes',
-        trendIcon: 'ti ti-trending-up'
-      },
+    
       
       {
         title: 'Total Denuncias',

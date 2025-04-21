@@ -1,19 +1,22 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ComplaintService } from '../../core/services/complaint.service';
 import { VerDenunciaComponent } from "../../denuncias/ver-denuncia/ver-denuncia.component";
-
+import { RegisterComponent } from "../../denuncias/register/register.component";
 
 declare var bootstrap: any;
 
 @Component({
   selector: 'app-denuncias',
   standalone: true,
-  imports: [CommonModule, VerDenunciaComponent],
+  imports: [CommonModule, VerDenunciaComponent, RegisterComponent],
   templateUrl: './denuncias.component.html',
   styleUrls: ['./denuncias.component.scss']
 })
-export class DenunciasComponent implements OnInit/*, AfterViewInit*/ {
+export class DenunciasComponent implements OnInit, AfterViewInit {
+
+  @ViewChild(RegisterComponent) registerComponent!: RegisterComponent;
+
   denuncias: any[] = [];
   loading = false;
   error: string | null = null;
@@ -25,18 +28,22 @@ export class DenunciasComponent implements OnInit/*, AfterViewInit*/ {
     this.cargarDenuncias();
   }
 
-  /*
   ngAfterViewInit(): void {
-    const modalElement = document.getElementById('detalleDenunciaModal');
+    const modalElement = document.getElementById('crearDenunciaModal');
+
     if (modalElement) {
+      // Cuando se abre el modal, reiniciar el formulario
+      modalElement.addEventListener('show.bs.modal', () => {
+        this.registerComponent.resetFormAndMessages?.();
+      });
+
+      // Cuando se cierra el modal, recargar la lista
       modalElement.addEventListener('hidden.bs.modal', () => {
         this.cargarDenuncias();
       });
     }
   }
- */
 
-  
   cargarDenuncias() {
     this.loading = true;
     this.error = null;
@@ -62,4 +69,5 @@ export class DenunciasComponent implements OnInit/*, AfterViewInit*/ {
       modal.show();
     }
   }
+
 }

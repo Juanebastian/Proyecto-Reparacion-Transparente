@@ -1,1 +1,47 @@
-<p>register works!</p>
+<div class="container mt-4">
+  <div class="card shadow">
+    <div class="card-body">
+      <h4 class="mb-4">Registrar nueva Denuncia</h4>
+
+      <div *ngIf="mensaje" class="alert alert-success">{{ mensaje }}</div>
+      <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+      <form [formGroup]="denunciaForm" (ngSubmit)="enviarDenuncia()">
+        <div class="mb-3">
+          <label for="descripcion" class="form-label">Descripción</label>
+          <textarea
+            id="descripcion"
+            formControlName="descripcion"
+            class="form-control"
+            rows="3"
+            placeholder="Describe tu queja"
+          ></textarea>
+          <div *ngIf="submitted && f.descripcion.errors" class="text-danger mt-1">
+            <small *ngIf="f.descripcion.hasError('required')">
+              La descripción es requerida.
+            </small>
+            <small *ngIf="f.descripcion.hasError('minlength')">
+              Mínimo 10 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3 form-check">
+          <input
+            type="checkbox"
+            id="anonimo"
+            formControlName="anonimo"
+            class="form-check-input"
+          />
+          <label for="anonimo" class="form-check-label">
+            ¿Enviar de manera anónima?
+          </label>
+        </div>
+
+        <button class="btn btn-info text-white" type="submit" [disabled]="loading">
+          {{ loading ? 'Enviando...' : 'Registrar queja' }}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
