@@ -4,8 +4,15 @@ export class CreateComplaintDto {
   @IsMongoId()
   usuario_id: string;
 
+  
+  @IsString()
+  asunto: string;
+
   @IsString()
   descripcion: string;
+
+  @IsString()
+  documentacion: string;
 
   @IsDate()
   fecha_envio: Date;

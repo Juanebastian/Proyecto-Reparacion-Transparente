@@ -18,6 +18,7 @@ export class ComplaintService {
     return new HttpHeaders({ Authorization: `Bearer ${token}` });
   }
 
+  // Obtener todas las denuncias
   getAllComplaints(): Observable<any> {
     return this.http.get(this.apiUrl, { headers: this.getHeaders() }).pipe(
       catchError((err) => {
@@ -27,10 +28,22 @@ export class ComplaintService {
     );
   }
 
+  // Crear denuncia
   createComplaint(data: any): Observable<any> {
     return this.http.post(this.apiUrl, data, { headers: this.getHeaders() }).pipe(
       catchError((err) => {
         console.error('❌ Error al crear denuncia:', err);
+        return throwError(() => err);
+      })
+    );
+  }
+
+  // Subir denuncia con archivo (ajustado para el endpoint de carga)
+  uploadComplaint(formData: FormData): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.post(`${this.apiUrl}/upload`, formData, { headers }).pipe(
+      catchError((err) => {
+        console.error('❌ Error al subir la denuncia con archivo:', err);
         return throwError(() => err);
       })
     );

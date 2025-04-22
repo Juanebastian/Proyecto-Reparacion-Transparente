@@ -8,7 +8,13 @@ export class Complaint extends Document {
   usuario_id: Types.ObjectId;
 
   @Prop({ required: true })
+  asunto: string;
+
+  @Prop({ required: true })
   descripcion: string;
+
+  @Prop({ required: true })
+  documentacion: string;
 
   @Prop({ required: true, default: Date.now })
   fecha_envio: Date;

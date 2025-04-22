@@ -6,7 +6,24 @@
       <div *ngIf="mensaje" class="alert alert-success">{{ mensaje }}</div>
       <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
 
-      <form [formGroup]="denunciaForm" (ngSubmit)="enviarDenuncia()">
+      <form [formGroup]="denunciaForm" (ngSubmit)="enviarDenuncia()" enctype="multipart/form-data">
+        <!-- Campo Asunto -->
+        <div class="mb-3">
+          <label for="asunto" class="form-label">Asunto</label>
+          <input
+            id="asunto"
+            formControlName="asunto"
+            class="form-control"
+            type="text"
+            placeholder="Introduce el asunto de la denuncia"
+          />
+          <div *ngIf="submitted && f.asunto.errors" class="text-danger mt-1">
+            <small *ngIf="f.asunto.hasError('required')">El asunto es requerido.</small>
+            <small *ngIf="f.asunto.hasError('minlength')">Mínimo 5 caracteres.</small>
+          </div>
+        </div>
+
+        <!-- Campo Descripción -->
         <div class="mb-3">
           <label for="descripcion" class="form-label">Descripción</label>
           <textarea
@@ -17,27 +34,24 @@
             placeholder="Describe tu queja"
           ></textarea>
           <div *ngIf="submitted && f.descripcion.errors" class="text-danger mt-1">
-            <small *ngIf="f.descripcion.hasError('required')">
-              La descripción es requerida.
-            </small>
-            <small *ngIf="f.descripcion.hasError('minlength')">
-              Mínimo 10 caracteres.
-            </small>
+            <small *ngIf="f.descripcion.hasError('required')">La descripción es requerida.</small>
+            <small *ngIf="f.descripcion.hasError('minlength')">Mínimo 10 caracteres.</small>
           </div>
         </div>
 
+        <!-- Checkbox Anónimo -->
         <div class="mb-3 form-check">
-          <input
-            type="checkbox"
-            id="anonimo"
-            formControlName="anonimo"
-            class="form-check-input"
-          />
-          <label for="anonimo" class="form-check-label">
-            ¿Enviar de manera anónima?
-          </label>
+          <input type="checkbox" id="anonimo" formControlName="anonimo" class="form-check-input" />
+          <label for="anonimo" class="form-check-label">¿Enviar de manera anónima?</label>
         </div>
 
+        <!-- Campo Documento -->
+        <div class="mb-3">
+          <label for="documento" class="form-label">Documento (PDF opcional)</label>
+          <input type="file" id="documento" class="form-control" (change)="onArchivoSeleccionado($event)" />
+        </div>
+
+        <!-- Botón de Enviar -->
         <button class="btn btn-info text-white" type="submit" [disabled]="loading">
           {{ loading ? 'Enviando...' : 'Registrar queja' }}
         </button>
