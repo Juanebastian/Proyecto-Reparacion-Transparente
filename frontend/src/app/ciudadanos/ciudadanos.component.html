@@ -1,0 +1,245 @@
+<header class="header">
+    <div class="container">
+      <div class="logo-container">
+        <img src="/images/logo_rt.png" alt="Logo" style="max-height: 50px;" class="mb-2" />
+        
+      </div>
+      <nav class="main-nav">
+        <ul class="nav-links">
+          <li><a href="#" class="active">Inicio</a></li>
+          <li><a href="#">Estadísticas</a></li>
+          <li><a href="#">Procesos</a></li>
+          <li><a href="#">Territorios</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="user-actions">
+        <button class="btn btn-primary" [routerLink]="['/login']">Iniciar Sesión</button>
+      </div>
+      
+    </div>
+  </header>
+  
+  <main class="main-content">
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-content">
+          <h2>Portal Ciudadano de Reparación y Restitución de Tierras</h2>
+          <p>Acceda a información sobre los procesos de restitución y reparación de tierras en Colombia</p>
+          <div class="search-container">
+            <input type="text" placeholder="Buscar por número de caso, departamento o municipio" class="search-input">
+            <button class="btn btn-search">Buscar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="stats-section">
+      <div class="container">
+        <h3>Estadísticas Nacionales</h3>
+        <div class="stats-cards">
+          <div class="stat-card">
+            <div class="stat-value">145,328</div>
+            <div class="stat-label">Hectáreas Restituidas</div>
+            <div class="stat-trend positive">↑ 12.3% este año</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">24,567</div>
+            <div class="stat-label">Familias Beneficiadas</div>
+            <div class="stat-trend positive">↑ 8.7% este año</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">3,452</div>
+            <div class="stat-label">Procesos en Curso</div>
+            <div class="stat-trend negative">↓ 5.2% este año</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">78%</div>
+            <div class="stat-label">Tasa de Resolución</div>
+            <div class="stat-trend positive">↑ 3.1% este año</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="charts-section">
+      <div class="container">
+        <h3>Informes y Visualización de Datos</h3>
+        <div class="chart-container">
+          <div class="chart-card">
+            <h4>Restituciones por Departamento</h4>
+            <div class="chart-placeholder">
+              <img src="/api/placeholder/500/300" alt="Gráfico de Restituciones por Departamento">
+            </div>
+          </div>
+          <div class="chart-card">
+            <h4>Evolución Anual de Casos</h4>
+            <div class="chart-placeholder">
+              <img src="/api/placeholder/500/300" alt="Gráfico de Evolución Anual">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="process-section">
+      <div class="container">
+        <h3>Estado de los Procesos</h3>
+        <div class="process-tabs">
+          <button class="tab-btn active">En Estudio</button>
+          <button class="tab-btn">En Proceso Judicial</button>
+          <button class="tab-btn">Sentencias</button>
+          <button class="tab-btn">Implementación</button>
+        </div>
+        <div class="process-content">
+          <div class="process-table-wrapper">
+            <table class="process-table">
+              <thead>
+                <tr>
+                  <th>ID Caso</th>
+                  <th>Departamento</th>
+                  <th>Municipio</th>
+                  <th>Área (ha)</th>
+                  <th>Fecha Inicio</th>
+                  <th>Estado</th>
+                  <th>Avance</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>RT-2023-4582</td>
+                  <td>Antioquia</td>
+                  <td>Apartadó</td>
+                  <td>156.4</td>
+                  <td>15/01/2023</td>
+                  <td>En Estudio</td>
+                  <td><div class="progress-bar"><div class="progress" style="width: 35%"></div></div></td>
+                </tr>
+                <tr>
+                  <td>RT-2022-7891</td>
+                  <td>Meta</td>
+                  <td>Villavicencio</td>
+                  <td>78.2</td>
+                  <td>10/08/2022</td>
+                  <td>En Estudio</td>
+                  <td><div class="progress-bar"><div class="progress" style="width: 65%"></div></div></td>
+                </tr>
+                <tr>
+                  <td>RT-2023-6234</td>
+                  <td>Córdoba</td>
+                  <td>Montería</td>
+                  <td>215.8</td>
+                  <td>03/04/2023</td>
+                  <td>En Estudio</td>
+                  <td><div class="progress-bar"><div class="progress" style="width: 25%"></div></div></td>
+                </tr>
+                <tr>
+                  <td>RT-2022-9123</td>
+                  <td>Bolívar</td>
+                  <td>Cartagena</td>
+                  <td>42.6</td>
+                  <td>22/11/2022</td>
+                  <td>En Estudio</td>
+                  <td><div class="progress-bar"><div class="progress" style="width: 80%"></div></div></td>
+                </tr>
+                <tr>
+                  <td>RT-2023-2341</td>
+                  <td>Cauca</td>
+                  <td>Popayán</td>
+                  <td>123.5</td>
+                  <td>17/02/2023</td>
+                  <td>En Estudio</td>
+                  <td><div class="progress-bar"><div class="progress" style="width: 45%"></div></div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pagination">
+            <button class="page-btn">Anterior</button>
+            <div class="page-numbers">
+              <button class="page-number active">1</button>
+              <button class="page-number">2</button>
+              <button class="page-number">3</button>
+              <span>...</span>
+              <button class="page-number">15</button>
+            </div>
+            <button class="page-btn">Siguiente</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="map-section">
+      <div class="container">
+        <h3>Distribución Geográfica</h3>
+        <div class="map-container">
+          <img src="/api/placeholder/1000/500" alt="Mapa de Colombia con regiones restituidas">
+          <div class="map-legend">
+            <div class="legend-item">
+              <div class="color-dot high"></div>
+              <div class="legend-text">Alta concentración</div>
+            </div>
+            <div class="legend-item">
+              <div class="color-dot medium"></div>
+              <div class="legend-text">Media concentración</div>
+            </div>
+            <div class="legend-item">
+              <div class="color-dot low"></div>
+              <div class="legend-text">Baja concentración</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-logo">
+          <img src="/images/logo_rt.png" alt="Logo Restitución de Tierras" class="logo-small">
+          <p>Sistema Nacional de Restitución de Tierras</p>
+        </div>
+        <div class="footer-links">
+          <div class="link-group">
+            <h5>Información</h5>
+            <ul>
+              <li><a href="#">Sobre el Proceso</a></li>
+              <li><a href="#">Marco Legal</a></li>
+              <li><a href="#">Preguntas Frecuentes</a></li>
+              <li><a href="#">Glosario</a></li>
+            </ul>
+          </div>
+          <div class="link-group">
+            <h5>Servicios</h5>
+            <ul>
+              <li><a href="#">Consulta de Casos</a></li>
+              <li><a href="#">Reportes y Estadísticas</a></li>
+              <li><a href="#">Mapa de Procesos</a></li>
+              <li><a href="#">Descarga de Documentos</a></li>
+            </ul>
+          </div>
+          <div class="link-group">
+            <h5>Contacto</h5>
+            <ul>
+              <li><a href="#">Línea Nacional: 01 8000 123 456</a></li>
+              <li><a href="#">contactorestitucion.gov.co</a></li>
+              <li><a href="#">Directorio de Oficinas</a></li>
+              <li><a href="#">Denuncias</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="copyright">
+          &copy; 2025 Sistema Nacional de Restitución de Tierras - República de Colombia
+        </div>
+        <div class="social-links">
+          <a href="#" class="social-link">Facebook</a>
+          <a href="#" class="social-link">Twitter</a>
+          <a href="#" class="social-link">Instagram</a>
+          <a href="#" class="social-link">YouTube</a>
+        </div>
+      </div>
+    </div>
+  </footer>

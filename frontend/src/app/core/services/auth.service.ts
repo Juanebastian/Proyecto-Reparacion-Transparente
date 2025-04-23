@@ -68,7 +68,7 @@ login(email: string, password: string): Observable<LoginResponse> {
     this.clearToken();
     this.clearUserInfo();
     this.authState.next(false);
-    this.router.navigate(['/login']); // 🔄 Redirige al login después de cerrar sesión
+    this.router.navigate(['/ciudadanos']); // 🔄 Redirige al login después de cerrar sesión
   }
 
   /**
