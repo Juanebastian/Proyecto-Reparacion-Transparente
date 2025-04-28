@@ -1,0 +1,61 @@
+<header class="bg-light shadow-sm py-3">
+    <div class="container d-flex align-items-center justify-content-between">
+      <!-- Logo -->
+      <div class="d-flex align-items-center">
+        <img src="/images/logo_rt.png" alt="Logo" style="max-height: 50px;" class="me-3" />
+      </div>
+  
+      <!-- Navegación -->
+      <nav class="d-none d-md-block">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link active text-primary" href="#">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="#">Estadísticas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="#">Procesos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="#">Territorios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="#">Contacto</a>
+          </li>
+        </ul>
+      </nav>
+  
+      <!-- Botón de usuario -->
+      <div>
+        <a class="btn btn-primary" [routerLink]="['/login']">Iniciar Sesión</a>
+      </div>
+  
+      <!-- Menú para móviles -->
+      <button class="btn d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNav">
+        <i class="bi bi-list"></i>
+      </button>
+    </div>
+  
+    <!-- Menú colapsable en móviles -->
+    <div class="collapse" id="mobileNav">
+      <ul class="nav flex-column text-center mt-3">
+        <li class="nav-item">
+          <a class="nav-link active text-primary" href="#">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="#">Estadísticas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="#">Procesos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="#">Territorios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="#">Contacto</a>
+        </li>
+      </ul>
+    </div>
+  </header>
+  
