@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ComplaintService } from '../../core/services/complaint.service';
 import { VerDenunciaComponent } from "../../denuncias/ver-denuncia/ver-denuncia.component";
