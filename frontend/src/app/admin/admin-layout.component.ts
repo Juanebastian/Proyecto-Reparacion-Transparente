@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { AdminSidebarComponent } from "./sidebar/admin-sidebar.component";
+
 import { HeaderComponent } from "../core/components/header/header.component";
 import { FooterComponent } from "../core/components/footer/footer.component";
 import { AuthService } from '../core/services/auth.service';
+import { SidebarComponent } from "../core/components/sidebar/sidebar.component";
 
 
 @Component({
@@ -13,9 +14,9 @@ import { AuthService } from '../core/services/auth.service';
   imports: [
     CommonModule,
     RouterModule,
-    AdminSidebarComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SidebarComponent
 ],
   templateUrl: './admin-layout.component.html',
   styleUrls: ['./admin-layout.component.scss']
