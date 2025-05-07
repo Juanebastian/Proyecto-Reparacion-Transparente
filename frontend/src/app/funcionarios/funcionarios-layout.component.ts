@@ -3,8 +3,8 @@ import { HeaderComponent } from "../core/components/header/header.component";
 import { FooterComponent } from "../core/components/footer/footer.component";
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { FuncionariosSidebarComponent } from "./sidebar/funcionarios-sidebar.component";
 import { AuthService } from '../core/services/auth.service';
+import { SidebarComponent } from "../core/components/sidebar/sidebar.component";
 
 @Component({
   selector: 'app-funcionarios-layout',
@@ -13,7 +13,7 @@ import { AuthService } from '../core/services/auth.service';
     FooterComponent,
     CommonModule,
     RouterModule,
-    FuncionariosSidebarComponent
+    SidebarComponent
 ],
   templateUrl: './funcionarios-layout.component.html',
   styleUrl: './funcionarios-layout.component.css'

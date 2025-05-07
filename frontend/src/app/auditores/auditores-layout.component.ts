@@ -1,18 +1,16 @@
 import { Component } from '@angular/core';
 import { FooterComponent } from "../core/components/footer/footer.component";
 import { HeaderComponent } from "../core/components/header/header.component";
-import { AuditoresSidebarComponent } from "./sidebar/auditores-sidebar.component";
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { SidebarComponent } from "../core/components/sidebar/sidebar.component";
 
 @Component({
   selector: 'app-auditores-layout',
-  imports: [FooterComponent, 
-    HeaderComponent, 
-    AuditoresSidebarComponent,
+  imports: [FooterComponent,
+    HeaderComponent,
     CommonModule,
-    RouterModule,
-  ],
+    RouterModule, SidebarComponent],
   templateUrl: './auditores-layout.component.html',
   styleUrl: './auditores-layout.component.scss'
 })
