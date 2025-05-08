@@ -55,7 +55,7 @@ export class SidebarComponent implements OnInit {
       this.navItems = [
         { path: '/auditores', icon: 'bi bi-speedometer', label: 'Dashboard', exact: true },
         { path: '/auditores/reportes', icon: 'bi bi-bar-chart-line', label: 'Reportes' },
-        { path: '/auditores/denuncias', icon: 'bi bi-bar-chart-line', label: 'Denuncias' }
+        { path: '/auditores/denuncias', icon: 'bi bi-flag', label: 'Denuncias' }
       ];
     } else {
       // Rol no reconocido, puedes personalizar esta sección
