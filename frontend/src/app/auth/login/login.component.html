@@ -4,7 +4,7 @@
     <div class="card shadow p-4 w-100" style="max-width: 500px;">
     <div class="text-center mb-4">
         <img src="images/logo_rt.png" alt="Login" class="img-fluid mb-3" style="max-height: 100px;">
-        <h3 class="fw-semibold text-white">Iniciar Sesión</h3>
+        <h3 class="fw-semibold text-white ">Iniciar Sesión</h3>
       </div>
 
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -28,7 +28,7 @@
           {{ errorMessage }}
         </div>
 
-        <button type="submit" class="btn btn-info w-100 rounded-pill py-2 text-white" [disabled]="loginForm.invalid">
+        <button type="submit" class="btn bg-teal w-100 rounded-pill py-2 text-white" [disabled]="loginForm.invalid">
           Ingresar
         </button>
       </form>

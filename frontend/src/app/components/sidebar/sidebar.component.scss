@@ -1,48 +1,112 @@
+$sidebar-bg: #158aa2;
+$sidebar-hover: darken($sidebar-bg, 10%);
+$sidebar-text: #f8f9fa;
+$sidebar-active: rgba(255, 255, 255, 0.1);
+$sidebar-border: rgba(255, 255, 255, 0.1);
+
 .sidebar {
   position: fixed;
-  top: 56px; /* Altura del navbar */
+  top: 56px; // altura del navbar
   left: 0;
   height: calc(100vh - 56px);
   width: 250px;
-  z-index: 1020;
-  transition: all 0.3s;
+  background: $sidebar-bg;
+  color: $sidebar-text;
+  transition: all 0.3s ease;
   overflow-y: auto;
-}
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
 
-.sidebar.collapsed {
-  width: 0;
-  overflow: hidden;
-}
+  &.collapsed {
+    width: 70px;
 
-.sidebar-header {
-  padding: 0.5rem 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
+    .sidebar-header h3 {
+      opacity: 0;
+      transform: translateX(-10px);
+      pointer-events: none;
+    }
 
-.sidebar-content {
-  padding: 1rem 0;
-}
+    .sidebar-link span {
+      display: none;
+    }
 
-.sidebar-item {
-  position: relative;
-  margin-bottom: 0.2rem;
-}
+    .bi-chevron-down {
+      display: none;
+    }
+  }
 
-.sidebar-link {
-  display: flex;
-  align-items: center;
-  color: rgba(255, 255, 255, 0.75);
-  padding: 0.75rem 1.5rem;
-  text-decoration: none;
-  transition: all 0.2s;
-}
+  .sidebar-header {
+    padding: 1rem;
+    border-bottom: 1px solid $sidebar-border;
 
-.sidebar-link:hover, .sidebar-link.active {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.1);
-}
+    h3 {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+  }
 
-.sub-link {
-  padding-left: 1rem;
-  font-size: 0.9rem;
+  .sidebar-content {
+    padding: 1rem 0;
+
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .sidebar-item {
+      position: relative;
+
+      .sidebar-link {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 1.25rem;
+        color: rgba($sidebar-text, 0.85);
+        text-decoration: none;
+        transition: background 0.3s, color 0.3s;
+        border-left: 3px solid transparent;
+
+        i.bi {
+          font-size: 1.1rem;
+          width: 24px;
+          text-align: center;
+          margin-right: 0.75rem;
+        }
+
+        span {
+          flex: 1;
+        }
+
+        &:hover {
+          background: $sidebar-hover;
+          color: $sidebar-text;
+        }
+
+        &.active {
+          background: $sidebar-active;
+          color: $sidebar-text;
+          border-left-color: lighten($sidebar-bg, 30%);
+        }
+      }
+
+      .collapse {
+        background: darken($sidebar-bg, 5%);
+        border-left: 1px solid $sidebar-border;
+
+        .sub-link {
+          display: block;
+          padding: 0.5rem 2rem;
+          font-size: 0.9rem;
+          color: rgba($sidebar-text, 0.8);
+          text-decoration: none;
+          transition: background 0.2s;
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: $sidebar-text;
+          }
+        }
+      }
+    }
+  }
 }

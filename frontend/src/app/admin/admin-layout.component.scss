@@ -1,9 +1,51 @@
-.content {
-    transition: margin-left 0.3s ease;
-    margin-left: 0;
+// Variables - ajusta estos valores según tus necesidades
+$navbar-height: 56px;
+$sidebar-width: 250px;
+$sidebar-collapsed-width: 70px;
+
+// Estilos del contenedor principal
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden; // Previene scroll no deseado
+}
+
+// Contenedor del cuerpo principal (sidebar + contenido)
+.layout-body {
+  display: flex;
+  height: calc(100vh - #{$navbar-height});
+  margin-top: $navbar-height; // Espacio para el navbar fijo
+  position: relative;
+}
+
+// Estilos para el contenido principal
+.content-wrapper {
+  flex: 1;
+  padding: 1rem;
+  margin-left: $sidebar-width; // Margen inicial igual al ancho del sidebar
+  width: calc(100% - #{$sidebar-width});
+  transition: margin-left 0.3s ease, width 0.3s ease;
+  overflow-y: auto; // Permite scroll vertical en el contenido
+  overflow-x: hidden; // Previene scroll horizontal
   
-    &.sidebar-open {
-      margin-left: 250px;
+  // Cuando el sidebar está colapsado
+  &.expanded {
+    margin-left: $sidebar-collapsed-width;
+    width: calc(100% - #{$sidebar-collapsed-width});
+  }
+}
+
+// Media queries para dispositivos móviles
+@media (max-width: 991.98px) {
+  .content-wrapper {
+    margin-left: 0;
+    width: 100%;
+    
+    &.expanded {
+      margin-left: 0;
+      width: 100%;
     }
   }
-  
+}

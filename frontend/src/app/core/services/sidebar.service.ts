@@ -5,6 +5,9 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class SidebarService {
+  hide() {
+    throw new Error('Method not implemented.');
+  }
   private sidebarVisibleSubject = new BehaviorSubject<boolean>(true);
   sidebarVisible$ = this.sidebarVisibleSubject.asObservable();
 

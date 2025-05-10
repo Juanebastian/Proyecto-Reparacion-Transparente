@@ -1,23 +1,39 @@
-<div class="sidebar bg-dark" [class.collapsed]="!(isVisible$ | async)">
+<div class="sidebar" [class.collapsed]="!(isVisible$ | async)">
   <div class="sidebar-header">
-    <h3 class="text-light py-3 px-3 mb-0">Menú</h3>
+    
+    <h3 class="text-light py-3 px-3 mb-0">{{ title }}</h3>
+
   </div>
-  <div class="sidebar-content">
-    <ul class="list-unstyled">
+
+  <div class="sidebar-content custom-scroll">
+    <ul class="list-unstyled m-0">
       @for (item of menuItems; track item.title) {
         <li class="sidebar-item">
           @if (item.submenu.length > 0) {
-            <a class="sidebar-link" data-bs-toggle="collapse" [attr.href]="'#submenu-' + item.title" role="button" 
-               aria-expanded="false" [attr.aria-controls]="'submenu-' + item.title">
+            <a
+              class="sidebar-link d-flex align-items-center justify-between"
+              role="button"
+              [attr.aria-expanded]="false"
+              [attr.aria-controls]="'submenu-' + item.title"
+              data-bs-toggle="collapse"
+              [attr.href]="'#submenu-' + item.title"
+            >
               <i class="bi {{ item.icon }} me-2"></i>
               <span>{{ item.title }}</span>
-              <i class="bi bi-chevron-down ms-auto"></i>
+              <i class="bi bi-chevron-down ms-auto rotate-icon"></i>
             </a>
+
             <div class="collapse" [id]="'submenu-' + item.title">
               <ul class="list-unstyled ms-3">
                 @for (subitem of item.submenu; track subitem.title) {
                   <li>
-                    <a class="sidebar-link sub-link" [routerLink]="subitem.link">
+                    <a
+                      class="sidebar-link sub-link"
+                      [routerLink]="subitem.link"
+                      routerLinkActive="active"
+                      [routerLinkActiveOptions]="{ exact: true }"
+                    >
+                      <i class="bi bi-dot me-1"></i>
                       <span>{{ subitem.title }}</span>
                     </a>
                   </li>
@@ -25,7 +41,12 @@
               </ul>
             </div>
           } @else {
-            <a class="sidebar-link" [routerLink]="item.link">
+            <a
+              class="sidebar-link"
+              [routerLink]="item.link"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
               <i class="bi {{ item.icon }} me-2"></i>
               <span>{{ item.title }}</span>
             </a>

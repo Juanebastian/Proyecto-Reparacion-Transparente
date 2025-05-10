@@ -1,18 +1,16 @@
-<div class="d-flex" style="min-height: 100vh;">
-  <app-sidebar *ngIf="isSidebarOpen"></app-sidebar>
-
-  <div 
-    class="d-flex flex-column flex-grow-1" 
-    [ngStyle]="{ 'margin-left': isSidebarOpen ? '250px' : '0' }"
-  >
-    <app-header (toggleSidebar)="toggleSidebar()"></app-header>
-
-    <!-- Main con flex-grow para ocupar el espacio -->
-    <main class="flex-grow-1 p-3">
-      <router-outlet></router-outlet>
-    </main>
-
-    <!-- Footer siempre abajo -->
-    <app-footer></app-footer>
+<div class="layout-wrapper">
+  <!-- Header del sitio -->
+  <app-header></app-header>
+  
+  <div class="layout-body">
+    <!-- Sidebar con la directiva para su visibilidad -->
+    <app-sidebar></app-sidebar>
+    
+    <!-- Contenido principal que se ajusta según el estado del sidebar -->
+    <div class="content-wrapper" [class.expanded]="!(sidebarService.sidebarVisible$ | async)">
+      <div class="container-fluid p-3">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
   </div>
 </div>
